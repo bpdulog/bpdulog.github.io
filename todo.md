@@ -1,0 +1,4 @@
+- [ ] Adapt the project for GitHub Pages deployment.
+- [ ] Update build configuration and documentation for a `bpdulog.github.io` repository.
+- [ ] Build and verify the GitHub Pages-compatible output.
+- [ ] Deliver the adapted project with publishing instructions.
