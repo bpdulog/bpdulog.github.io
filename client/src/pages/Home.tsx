@@ -14,6 +14,7 @@ import {
   Workflow,
   ChartNoAxesCombined,
   Database,
+  Calculator,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
@@ -81,6 +82,17 @@ const spotlightLinks = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/bryandulog/",
     description: "Professional background and experience",
+  },
+];
+
+const liveProjects = [
+  {
+    title: "Loan amortization calculator",
+    description: "Build a monthly payoff plan, test extra payments, and see the interest and time you can save.",
+    href: "https://bpdulog.github.io/loan-amortization-calculator/",
+    repository: "https://github.com/bpdulog/loan-amortization-calculator",
+    label: "Interactive tool",
+    icon: Calculator,
   },
 ];
 
@@ -477,6 +489,60 @@ export default function Home() {
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        <section className="container pb-24 sm:pb-32">
+          <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <SectionEyebrow>Live projects</SectionEyebrow>
+              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">Tools you can use right now.</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
+              A growing index of browser-based projects. Bookmark this page as the easiest way to find every live build.
+            </p>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            {liveProjects.map((project, index) => {
+              const Icon = project.icon;
+
+              return (
+                <motion.article
+                  key={project.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.22 }}
+                  transition={{ duration: 0.72, delay: index * 0.06 }}
+                  className="group relative overflow-hidden rounded-[2rem] border border-amber-200/15 bg-white/6 p-6 backdrop-blur-2xl transition duration-500 hover:-translate-y-1.5 hover:border-amber-200/30 hover:bg-white/8 sm:p-7"
+                >
+                  <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full border border-amber-200/15 bg-amber-200/5 blur-[1px] transition duration-500 group-hover:scale-110" />
+                  <div className="relative flex h-full flex-col justify-between gap-10">
+                    <div>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200/20 bg-amber-200/10 text-amber-100">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
+                          {project.label}
+                        </span>
+                      </div>
+                      <h3 className="mt-7 text-2xl font-medium tracking-[-0.03em] text-white">{project.title}</h3>
+                      <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">{project.description}</p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5 text-sm">
+                      <a href={project.href} className="inline-flex items-center gap-2 text-amber-100 transition hover:text-white">
+                        Open project <ArrowUpRight className="h-4 w-4" />
+                      </a>
+                      <a href={project.repository} target="_blank" rel="noreferrer" className="text-slate-400 transition hover:text-white">
+                        View source
+                      </a>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </section>
 
