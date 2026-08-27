@@ -15,6 +15,8 @@ import {
   ChartNoAxesCombined,
   Database,
   Calculator,
+  Languages,
+  BookOpen,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
@@ -93,6 +95,30 @@ const liveProjects = [
     repository: "https://github.com/bpdulog/loan-amortization-calculator",
     label: "Interactive tool",
     icon: Calculator,
+  },
+  {
+    title: "Tagalog verb conjugator",
+    description: "Explore Tagalog verb forms with an interactive tool designed to make conjugation patterns easier to study.",
+    href: "https://bpdulog.github.io/tagalog-conjugator/",
+    repository: "https://github.com/bpdulog/tagalog-conjugator",
+    label: "Language tool",
+    icon: Languages,
+  },
+  {
+    title: "Tagalog pronouns guide",
+    description: "A practical guide to Tagalog pronouns, respectful speech, word order, verb forms, and focus.",
+    href: "https://bpdulog.github.io/tagalog-pronouns-guide/",
+    repository: "https://github.com/bpdulog/tagalog-pronouns-guide",
+    label: "Learning guide",
+    icon: BookOpen,
+  },
+  {
+    title: "Dividend projections",
+    description: "Model dividend growth, capital appreciation, recurring contributions, and long-term portfolio income.",
+    href: "https://bpdulog.github.io/dividend-projections/",
+    repository: "https://github.com/bpdulog/dividend-projections",
+    label: "Finance tool",
+    icon: ChartNoAxesCombined,
   },
 ];
 
