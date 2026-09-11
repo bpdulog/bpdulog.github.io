@@ -90,7 +90,8 @@ const spotlightLinks = [
 const liveProjects = [
   {
     title: "Loan amortization calculator",
-    description: "Build a monthly payoff plan, test extra payments, and see the interest and time you can save.",
+    description:
+      "Build a monthly payoff plan, test extra payments, and see the interest and time you can save.",
     href: "https://bpdulog.github.io/loan-amortization-calculator/",
     repository: "https://github.com/bpdulog/loan-amortization-calculator",
     label: "Interactive tool",
@@ -98,7 +99,8 @@ const liveProjects = [
   },
   {
     title: "Tagalog verb conjugator",
-    description: "Explore Tagalog verb forms with an interactive tool designed to make conjugation patterns easier to study.",
+    description:
+      "Explore Tagalog verb forms with an interactive tool designed to make conjugation patterns easier to study.",
     href: "https://bpdulog.github.io/tagalog-conjugator/",
     repository: "https://github.com/bpdulog/tagalog-conjugator",
     label: "Language tool",
@@ -106,7 +108,8 @@ const liveProjects = [
   },
   {
     title: "Tagalog pronouns guide",
-    description: "A practical guide to Tagalog pronouns, respectful speech, word order, verb forms, and focus.",
+    description:
+      "A practical guide to Tagalog pronouns, respectful speech, word order, verb forms, and focus.",
     href: "https://bpdulog.github.io/tagalog-pronouns-guide/",
     repository: "https://github.com/bpdulog/tagalog-pronouns-guide",
     label: "Learning guide",
@@ -114,7 +117,8 @@ const liveProjects = [
   },
   {
     title: "Dividend projections",
-    description: "Model dividend growth, capital appreciation, recurring contributions, and long-term portfolio income.",
+    description:
+      "Model dividend growth, capital appreciation, recurring contributions, and long-term portfolio income.",
     href: "https://bpdulog.github.io/dividend-projections/",
     repository: "https://github.com/bpdulog/dividend-projections",
     label: "Finance tool",
@@ -187,7 +191,9 @@ const heroShapes = [
 function StatPill({ value, label }: { value: string; label: string }) {
   return (
     <div className="group rounded-full border border-white/12 bg-white/6 px-4 py-2 backdrop-blur-xl transition duration-300 hover:border-cyan-300/30 hover:bg-white/10">
-      <div className="text-[0.68rem] uppercase tracking-[0.28em] text-slate-400">{label}</div>
+      <div className="text-[0.68rem] uppercase tracking-[0.28em] text-slate-400">
+        {label}
+      </div>
       <div className="mt-1 text-base font-medium text-white">{value}</div>
     </div>
   );
@@ -213,7 +219,9 @@ export default function Home() {
       try {
         const [profileResponse, repoResponse] = await Promise.all([
           fetch("https://api.github.com/users/bpdulog"),
-          fetch("https://api.github.com/users/bpdulog/repos?sort=updated&per_page=100"),
+          fetch(
+            "https://api.github.com/users/bpdulog/repos?sort=updated&per_page=100",
+          ),
         ]);
 
         if (!profileResponse.ok || !repoResponse.ok) {
@@ -246,7 +254,8 @@ export default function Home() {
           id: 1,
           name: "Python_Projects",
           html_url: "https://github.com/bpdulog/Python_Projects",
-          description: "A collection of Python exercises and applied learning projects.",
+          description:
+            "A collection of Python exercises and applied learning projects.",
           stargazers_count: 0,
           language: "Jupyter Notebook",
           homepage: null,
@@ -268,7 +277,8 @@ export default function Home() {
           id: 3,
           name: "Tepper",
           html_url: "https://github.com/bpdulog/Tepper",
-          description: "Academic and technical work connected to Tepper coursework.",
+          description:
+            "Academic and technical work connected to Tepper coursework.",
           stargazers_count: 0,
           language: "Jupyter Notebook",
           homepage: null,
@@ -283,7 +293,12 @@ export default function Home() {
       .filter(Boolean) as GitHubRepo[];
 
     const unique = Array.from(
-      new Map([...curated, ...repos.filter((repo) => !repo.fork)].map((repo) => [repo.id, repo])).values(),
+      new Map(
+        [...curated, ...repos.filter((repo) => !repo.fork)].map((repo) => [
+          repo.id,
+          repo,
+        ]),
+      ).values(),
     );
 
     return unique.slice(0, 6);
@@ -309,7 +324,11 @@ export default function Home() {
             key={index}
             className={`absolute rounded-full backdrop-blur-2xl ${shape.className}`}
             animate={{ x: shape.x, y: shape.y, rotate: shape.rotate }}
-            transition={{ duration: shape.duration, repeat: Infinity, ease: "easeInOut" }}
+            transition={{
+              duration: shape.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
         ))}
       </div>
@@ -322,11 +341,26 @@ export default function Home() {
             </div>
             <div>
               <p className="text-sm font-medium text-white">{displayName}</p>
-              <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Finance × Code × Systems</p>
+              <p className="text-xs uppercase tracking-[0.28em] text-slate-400">
+                Finance × Code × Systems
+              </p>
             </div>
           </div>
 
+          <a
+            href="/resume"
+            className="rounded-full border border-cyan-300/20 bg-cyan-300/8 px-3 py-2 text-xs font-medium text-cyan-50 transition hover:border-cyan-200/35 hover:bg-cyan-200/15 md:hidden"
+          >
+            Resume
+          </a>
+
           <div className="hidden items-center gap-2 md:flex">
+            <a
+              href="/resume"
+              className="rounded-full border border-cyan-300/20 bg-cyan-300/8 px-4 py-2 text-sm text-cyan-50 transition hover:border-cyan-200/35 hover:bg-cyan-200/15"
+            >
+              Interactive resume
+            </a>
             {spotlightLinks.map((link) => (
               <a
                 key={link.label}
@@ -354,7 +388,8 @@ export default function Home() {
               <SectionEyebrow>Personal homepage</SectionEyebrow>
               <div className="space-y-7">
                 <p className="max-w-xl text-sm uppercase tracking-[0.32em] text-slate-400">
-                  Building practical systems for forecasting, automation, and analytical work.
+                  Building practical systems for forecasting, automation, and
+                  analytical work.
                 </p>
                 <h1 className="max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
                   Finance-trained,
@@ -364,22 +399,41 @@ export default function Home() {
                   focused on useful systems.
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                  I&apos;m <span className="text-white">{displayName}</span>, a New York-based builder with a background in
-                  finance and financial risk management. I use <span className="text-cyan-100">Python</span>,
-                  <span className="text-cyan-100"> R</span>, and <span className="text-cyan-100">SQL</span> to explore
-                  forecasting, automate repeatable work, and turn analysis into practical outputs.
+                  I&apos;m <span className="text-white">{displayName}</span>, a
+                  New York-based builder with a background in finance and
+                  financial risk management. I use{" "}
+                  <span className="text-cyan-100">Python</span>,
+                  <span className="text-cyan-100"> R</span>, and{" "}
+                  <span className="text-cyan-100">SQL</span> to explore
+                  forecasting, automate repeatable work, and turn analysis into
+                  practical outputs.
                 </p>
               </div>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Button asChild className="h-12 rounded-full bg-cyan-200 px-6 text-sm font-medium text-slate-950 hover:bg-cyan-100">
-                  <a href="https://github.com/bpdulog" target="_blank" rel="noreferrer">
+                <Button
+                  asChild
+                  className="h-12 rounded-full bg-cyan-200 px-6 text-sm font-medium text-slate-950 hover:bg-cyan-100"
+                >
+                  <a
+                    href="https://github.com/bpdulog"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     View GitHub
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="h-12 rounded-full border-white/15 bg-white/5 px-6 text-sm text-white hover:bg-white/10">
-                  <a href="https://www.linkedin.com/in/bryandulog/" target="_blank" rel="noreferrer">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="h-12 rounded-full border-white/15 bg-white/5 px-6 text-sm text-white hover:bg-white/10"
+                >
+                  <a
+                    href="https://www.linkedin.com/in/bryandulog/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Connect on LinkedIn
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </a>
@@ -387,16 +441,29 @@ export default function Home() {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-3">
-                <StatPill value={String(profile?.public_repos ?? 14)} label="Public repos" />
-                <StatPill value={String(profile?.followers ?? 2)} label="Followers" />
-                <StatPill value={profile?.location ?? "New York, NY"} label="Based in" />
+                <StatPill
+                  value={String(profile?.public_repos ?? 14)}
+                  label="Public repos"
+                />
+                <StatPill
+                  value={String(profile?.followers ?? 2)}
+                  label="Followers"
+                />
+                <StatPill
+                  value={profile?.location ?? "New York, NY"}
+                  label="Based in"
+                />
               </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.95, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.95,
+                delay: 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="relative ml-auto w-full max-w-2xl"
             >
               <div className="hero-frame relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/7 p-3 shadow-[0_30px_100px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
@@ -409,7 +476,11 @@ export default function Home() {
                       key={index}
                       className={`absolute rounded-full backdrop-blur-xl ${shape.className}`}
                       animate={{ x: shape.x, y: shape.y, rotate: shape.rotate }}
-                      transition={{ duration: shape.duration, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: shape.duration,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     />
                   ))}
                   <div className="relative grid min-h-[520px] grid-rows-[auto_1fr_auto] gap-6 p-6 sm:p-8">
@@ -424,26 +495,45 @@ export default function Home() {
 
                     <div className="flex flex-col justify-end gap-6">
                       <div className="inline-flex w-fit items-center gap-3 rounded-full border border-white/12 bg-slate-950/55 px-4 py-3 backdrop-blur-xl">
-                        <img src={avatar} alt={displayName} className="h-14 w-14 rounded-full object-cover ring-1 ring-white/10" />
+                        <img
+                          src={avatar}
+                          alt={displayName}
+                          className="h-14 w-14 rounded-full object-cover ring-1 ring-white/10"
+                        />
                         <div>
-                          <p className="text-base font-medium text-white">{displayName}</p>
-                          <p className="mt-1 text-sm text-slate-300">{profile?.bio ?? "Finance, risk, and technical problem solving."}</p>
+                          <p className="text-base font-medium text-white">
+                            {displayName}
+                          </p>
+                          <p className="mt-1 text-sm text-slate-300">
+                            {profile?.bio ??
+                              "Finance, risk, and technical problem solving."}
+                          </p>
                         </div>
                       </div>
 
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="rounded-[1.4rem] border border-white/10 bg-slate-950/48 p-5 backdrop-blur-xl">
-                          <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">Primary tools</p>
-                          <p className="mt-4 text-2xl font-medium text-white">Python, R, SQL</p>
+                          <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">
+                            Primary tools
+                          </p>
+                          <p className="mt-4 text-2xl font-medium text-white">
+                            Python, R, SQL
+                          </p>
                           <p className="mt-3 text-sm leading-7 text-slate-300">
-                            A practical stack for analysis, process improvement, and repeatable reporting.
+                            A practical stack for analysis, process improvement,
+                            and repeatable reporting.
                           </p>
                         </div>
                         <div className="rounded-[1.4rem] border border-white/10 bg-slate-950/48 p-5 backdrop-blur-xl">
-                          <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">Current direction</p>
-                          <p className="mt-4 text-2xl font-medium text-white">From models to systems</p>
+                          <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">
+                            Current direction
+                          </p>
+                          <p className="mt-4 text-2xl font-medium text-white">
+                            From models to systems
+                          </p>
                           <p className="mt-3 text-sm leading-7 text-slate-300">
-                            Learning in public through repositories that connect theory, code, and useful outputs.
+                            Learning in public through repositories that connect
+                            theory, code, and useful outputs.
                           </p>
                         </div>
                       </div>
@@ -480,13 +570,18 @@ export default function Home() {
                 A career arc grounded in risk, translated into technical craft.
               </h2>
               <p className="mt-6 max-w-xl text-base leading-8 text-slate-300">
-                The work here sits at the intersection of structured thinking and hands-on implementation. The goal is not
-                just to analyze outcomes, but to build workflows that make those outcomes easier to produce again.
+                The work here sits at the intersection of structured thinking
+                and hands-on implementation. The goal is not just to analyze
+                outcomes, but to build workflows that make those outcomes easier
+                to produce again.
               </p>
               <div className="mt-8 rounded-[1.6rem] border border-white/10 bg-slate-950/45 p-5">
-                <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">Positioning</p>
+                <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">
+                  Positioning
+                </p>
                 <p className="mt-3 text-lg leading-8 text-slate-200">
-                  Finance background. Technical toolkit. Practical interest in forecasting, automation, and better analytical systems.
+                  Finance background. Technical toolkit. Practical interest in
+                  forecasting, automation, and better analytical systems.
                 </p>
               </div>
             </motion.div>
@@ -508,8 +603,12 @@ export default function Home() {
                       <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-200/18 bg-cyan-200/10 text-cyan-50">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="mt-6 text-xl font-medium text-white">{item.title}</h3>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{item.description}</p>
+                      <h3 className="mt-6 text-xl font-medium text-white">
+                        {item.title}
+                      </h3>
+                      <p className="mt-4 text-sm leading-7 text-slate-300">
+                        {item.description}
+                      </p>
                     </div>
                   </motion.article>
                 );
@@ -522,10 +621,13 @@ export default function Home() {
           <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <SectionEyebrow>Live projects</SectionEyebrow>
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">Tools you can use right now.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+                Tools you can use right now.
+              </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              A growing index of browser-based projects. Bookmark this page as the easiest way to find every live build.
+              A growing index of browser-based projects. Bookmark this page as
+              the easiest way to find every live build.
             </p>
           </div>
 
@@ -553,15 +655,27 @@ export default function Home() {
                           {project.label}
                         </span>
                       </div>
-                      <h3 className="mt-7 text-2xl font-medium tracking-[-0.03em] text-white">{project.title}</h3>
-                      <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">{project.description}</p>
+                      <h3 className="mt-7 text-2xl font-medium tracking-[-0.03em] text-white">
+                        {project.title}
+                      </h3>
+                      <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+                        {project.description}
+                      </p>
                     </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5 text-sm">
-                      <a href={project.href} className="inline-flex items-center gap-2 text-amber-100 transition hover:text-white">
+                      <a
+                        href={project.href}
+                        className="inline-flex items-center gap-2 text-amber-100 transition hover:text-white"
+                      >
                         Open project <ArrowUpRight className="h-4 w-4" />
                       </a>
-                      <a href={project.repository} target="_blank" rel="noreferrer" className="text-slate-400 transition hover:text-white">
+                      <a
+                        href={project.repository}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-slate-400 transition hover:text-white"
+                      >
                         View source
                       </a>
                     </div>
@@ -576,10 +690,14 @@ export default function Home() {
           <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <SectionEyebrow>Selected work</SectionEyebrow>
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">Repositories that map the learning journey.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+                Repositories that map the learning journey.
+              </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              A mix of notebooks, portfolio material, and technical exercises that reflect experimentation, structured learning, and practical implementation.
+              A mix of notebooks, portfolio material, and technical exercises
+              that reflect experimentation, structured learning, and practical
+              implementation.
             </p>
           </div>
 
@@ -601,15 +719,20 @@ export default function Home() {
                   <div>
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">Repository</p>
-                        <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-white">{repo.name}</h3>
+                        <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">
+                          Repository
+                        </p>
+                        <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-white">
+                          {repo.name}
+                        </h3>
                       </div>
                       <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
                         {repo.language ?? "Code"}
                       </span>
                     </div>
                     <p className="mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                      {repo.description ?? "Open repository on GitHub to view the full project details and source materials."}
+                      {repo.description ??
+                        "Open repository on GitHub to view the full project details and source materials."}
                     </p>
                   </div>
 
@@ -646,22 +769,40 @@ export default function Home() {
               <div>
                 <SectionEyebrow>Connect</SectionEyebrow>
                 <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                  If you want to follow the transition from analysis to implementation, start here.
+                  If you want to follow the transition from analysis to
+                  implementation, start here.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
-                  This homepage is designed as a concise entry point into Bryan Dulog&apos;s work: finance-rooted reasoning, technical curiosity, and a growing body of practical repositories.
+                  This homepage is designed as a concise entry point into Bryan
+                  Dulog&apos;s work: finance-rooted reasoning, technical
+                  curiosity, and a growing body of practical repositories.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <Button asChild className="h-12 rounded-full bg-white px-6 text-sm text-slate-950 hover:bg-slate-100">
-                  <a href="https://github.com/bpdulog" target="_blank" rel="noreferrer">
+                <Button
+                  asChild
+                  className="h-12 rounded-full bg-white px-6 text-sm text-slate-950 hover:bg-slate-100"
+                >
+                  <a
+                    href="https://github.com/bpdulog"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <Github className="mr-2 h-4 w-4" />
                     Visit GitHub
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="h-12 rounded-full border-white/15 bg-white/6 px-6 text-sm text-white hover:bg-white/10">
-                  <a href="https://www.linkedin.com/in/bryandulog/" target="_blank" rel="noreferrer">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="h-12 rounded-full border-white/15 bg-white/6 px-6 text-sm text-white hover:bg-white/10"
+                >
+                  <a
+                    href="https://www.linkedin.com/in/bryandulog/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <Linkedin className="mr-2 h-4 w-4" />
                     Visit LinkedIn
                   </a>

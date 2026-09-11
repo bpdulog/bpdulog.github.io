@@ -133,7 +133,11 @@ animated analytical atmospherics, and a disciplined contrast system.
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
-    background-image: linear-gradient(180deg, rgba(8, 17, 29, 1) 0%, rgba(7, 17, 31, 1) 100%);
+    background-image: linear-gradient(
+      180deg,
+      rgba(8, 17, 29, 1) 0%,
+      rgba(7, 17, 31, 1) 100%
+    );
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -198,7 +202,10 @@ animated analytical atmospherics, and a disciplined contrast system.
 }
 
 .noise-overlay {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 0.6px, transparent 0.6px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.08) 0.6px,
+    transparent 0.6px
+  );
   background-size: 7px 7px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 90%);
 }
@@ -208,7 +215,11 @@ animated analytical atmospherics, and a disciplined contrast system.
     linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 88px 88px;
-  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.78), transparent 74%);
+  mask-image: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.78),
+    transparent 74%
+  );
   opacity: 0.22;
 }
 
@@ -243,8 +254,17 @@ animated analytical atmospherics, and a disciplined contrast system.
   left: -8rem;
   width: 26rem;
   height: 26rem;
-  background: radial-gradient(circle at 30% 30%, rgba(152, 242, 255, 0.38), transparent 58%),
-    radial-gradient(circle at 70% 65%, rgba(90, 144, 255, 0.22), transparent 66%);
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(152, 242, 255, 0.38),
+      transparent 58%
+    ),
+    radial-gradient(
+      circle at 70% 65%,
+      rgba(90, 144, 255, 0.22),
+      transparent 66%
+    );
   animation: drift-one 18s ease-in-out infinite;
 }
 
@@ -258,8 +278,17 @@ animated analytical atmospherics, and a disciplined contrast system.
   top: 10rem;
   width: 29rem;
   height: 29rem;
-  background: radial-gradient(circle at 45% 45%, rgba(185, 241, 255, 0.24), transparent 55%),
-    radial-gradient(circle at 66% 62%, rgba(255, 194, 122, 0.14), transparent 62%);
+  background:
+    radial-gradient(
+      circle at 45% 45%,
+      rgba(185, 241, 255, 0.24),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 66% 62%,
+      rgba(255, 194, 122, 0.14),
+      transparent 62%
+    );
   animation: drift-two 24s ease-in-out infinite;
 }
 
@@ -274,8 +303,17 @@ animated analytical atmospherics, and a disciplined contrast system.
   bottom: 8rem;
   width: 20rem;
   height: 20rem;
-  background: radial-gradient(circle at 35% 35%, rgba(97, 225, 255, 0.2), transparent 58%),
-    radial-gradient(circle at 72% 72%, rgba(255, 255, 255, 0.07), transparent 64%);
+  background:
+    radial-gradient(
+      circle at 35% 35%,
+      rgba(97, 225, 255, 0.2),
+      transparent 58%
+    ),
+    radial-gradient(
+      circle at 72% 72%,
+      rgba(255, 255, 255, 0.07),
+      transparent 64%
+    );
   animation: drift-three 20s ease-in-out infinite;
 }
 
@@ -325,5 +363,23 @@ animated analytical atmospherics, and a disciplined contrast system.
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  .print\:hidden,
+  .orbital,
+  .noise-overlay,
+  .grid-haze {
+    display: none !important;
+  }
+
+  .resume-panel {
+    background: #f8fafc !important;
   }
 }
