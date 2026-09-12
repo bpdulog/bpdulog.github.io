@@ -15,6 +15,7 @@ import {
   ChartNoAxesCombined,
   Database,
   Calculator,
+  Wallet,
   Languages,
   BookOpen,
 } from "lucide-react";
@@ -123,6 +124,24 @@ const liveProjects = [
     repository: "https://github.com/bpdulog/dividend-projections",
     label: "Finance tool",
     icon: ChartNoAxesCombined,
+  },
+  {
+    title: "Personal budget tracker",
+    description:
+      "Track monthly spending privately in the browser with local-only data and CSV transaction import.",
+    href: "https://bpdulog.github.io/personal-budget-tracker/",
+    repository: "https://github.com/bpdulog/personal-budget-tracker",
+    label: "Finance tool",
+    icon: Wallet,
+  },
+  {
+    title: "Polish cases guide",
+    description:
+      "Learn Polish grammar through an interactive guide covering the seven cases and core sentence patterns.",
+    href: "https://bpdulog.github.io/polish-cases-guide/",
+    repository: "https://github.com/bpdulog/polish-cases-guide",
+    label: "Language tool",
+    icon: Languages,
   },
 ];
 
