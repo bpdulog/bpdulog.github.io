@@ -58,19 +58,19 @@ const principles = [
   {
     title: "Forecasting mindset",
     description:
-      "A finance and risk background informs a practical approach to modeling, trend interpretation, and structured decision-making.",
+      "I come from finance and risk, which is where I learned to model, read trends, and make decisions with incomplete information.",
     icon: ChartNoAxesCombined,
   },
   {
     title: "Automation focus",
     description:
-      "Python, R, and SQL are used to reduce repetition, improve reporting flow, and turn manual processes into repeatable systems.",
+      "I use Python, R, and SQL to take over the parts of a process that are repetitive.",
     icon: Workflow,
   },
   {
     title: "Analytical tooling",
     description:
-      "Projects emphasize clear logic, durable workflows, and useful outputs rather than novelty for its own sake.",
+      "I like projects where the logic is clear and the output is something someone will use.",
     icon: Database,
   },
 ];
@@ -92,7 +92,7 @@ const liveProjects = [
   {
     title: "Loan amortization calculator",
     description:
-      "Build a monthly payoff plan, test extra payments, and see the interest and time you can save.",
+      "Work out a monthly payoff plan, try extra payments, and see what they do to the interest.",
     href: "https://bpdulog.github.io/loan-amortization-calculator/",
     repository: "https://github.com/bpdulog/loan-amortization-calculator",
     label: "Interactive tool",
@@ -101,7 +101,7 @@ const liveProjects = [
   {
     title: "Tagalog verb conjugator",
     description:
-      "Explore Tagalog verb forms with an interactive tool designed to make conjugation patterns easier to study.",
+      "An interactive tool for Tagalog verb forms. I built it for studying.",
     href: "https://bpdulog.github.io/tagalog-conjugator/",
     repository: "https://github.com/bpdulog/tagalog-conjugator",
     label: "Language tool",
@@ -110,7 +110,7 @@ const liveProjects = [
   {
     title: "Tagalog pronouns guide",
     description:
-      "A practical guide to Tagalog pronouns, respectful speech, word order, verb forms, and focus.",
+      "A guide to Tagalog pronouns, respectful speech, word order, verb forms, and focus.",
     href: "https://bpdulog.github.io/tagalog-pronouns-guide/",
     repository: "https://github.com/bpdulog/tagalog-pronouns-guide",
     label: "Learning guide",
@@ -119,7 +119,7 @@ const liveProjects = [
   {
     title: "Dividend projections",
     description:
-      "Model dividend growth, capital appreciation, recurring contributions, and long-term portfolio income.",
+      "Model dividend growth, price appreciation, and regular contributions over time.",
     href: "https://bpdulog.github.io/dividend-projections/",
     repository: "https://github.com/bpdulog/dividend-projections",
     label: "Finance tool",
@@ -128,7 +128,7 @@ const liveProjects = [
   {
     title: "Personal budget tracker",
     description:
-      "Track monthly spending privately in the browser with local-only data and CSV transaction import.",
+      "A budget tracker that runs in the browser. Your data stays on your computer, and you can import transactions from a CSV.",
     href: "https://bpdulog.github.io/personal-budget-tracker/",
     repository: "https://github.com/bpdulog/personal-budget-tracker",
     label: "Finance tool",
@@ -137,7 +137,7 @@ const liveProjects = [
   {
     title: "Polish cases guide",
     description:
-      "Learn Polish grammar through an interactive guide covering the seven cases and core sentence patterns.",
+      "An interactive guide to the seven Polish cases and how they're used in sentences.",
     href: "https://bpdulog.github.io/polish-cases-guide/",
     repository: "https://github.com/bpdulog/polish-cases-guide",
     label: "Language tool",
@@ -404,28 +404,27 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-3xl"
             >
-              <SectionEyebrow>Personal homepage</SectionEyebrow>
+              <SectionEyebrow>About</SectionEyebrow>
               <div className="space-y-7">
                 <p className="max-w-xl text-sm uppercase tracking-[0.32em] text-slate-400">
-                  Building practical systems for forecasting, automation, and
-                  analytical work.
+                  I build tools for forecasting and automation. Everything I
+                  make goes on GitHub.
                 </p>
                 <h1 className="max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
-                  Finance-trained,
+                  Fifteen years in finance.
                   <br />
-                  code-driven,
+                  Now I build things with code.
                   <br />
-                  focused on useful systems.
+                  Most of them are small.
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                  I&apos;m <span className="text-white">{displayName}</span>, a
-                  New York-based builder with a background in finance and
-                  financial risk management. I use{" "}
-                  <span className="text-cyan-100">Python</span>,
+                  I&apos;m <span className="text-white">{displayName}</span>. I
+                  live in New York and worked in finance and risk management for
+                  about fifteen years. These days I spend most of my time
+                  writing <span className="text-cyan-100">Python</span>,
                   <span className="text-cyan-100"> R</span>, and{" "}
-                  <span className="text-cyan-100">SQL</span> to explore
-                  forecasting, automate repeatable work, and turn analysis into
-                  practical outputs.
+                  <span className="text-cyan-100">SQL</span>, usually on
+                  forecasting or replacing manual reporting work.
                 </p>
               </div>
 
@@ -439,7 +438,7 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    View GitHub
+                    GitHub
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -505,10 +504,10 @@ export default function Home() {
                   <div className="relative grid min-h-[520px] grid-rows-[auto_1fr_auto] gap-6 p-6 sm:p-8">
                     <div className="flex items-start justify-between gap-4">
                       <div className="rounded-full border border-white/10 bg-slate-950/55 px-3 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-slate-300 backdrop-blur-xl">
-                        Analytical operator
+                        Finance and risk
                       </div>
                       <div className="rounded-full border border-cyan-200/20 bg-cyan-200/10 px-3 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-cyan-50 backdrop-blur-xl">
-                        Forecasting & automation
+                        Python, R, SQL
                       </div>
                     </div>
 
@@ -525,7 +524,7 @@ export default function Home() {
                           </p>
                           <p className="mt-1 text-sm text-slate-300">
                             {profile?.bio ??
-                              "Finance, risk, and technical problem solving."}
+                              "I work on forecasting and reporting problems."}
                           </p>
                         </div>
                       </div>
@@ -539,8 +538,8 @@ export default function Home() {
                             Python, R, SQL
                           </p>
                           <p className="mt-3 text-sm leading-7 text-slate-300">
-                            A practical stack for analysis, process improvement,
-                            and repeatable reporting.
+                            I use them to pull data together and to replace
+                            spreadsheet work that&apos;s done by hand.
                           </p>
                         </div>
                         <div className="rounded-[1.4rem] border border-white/10 bg-slate-950/48 p-5 backdrop-blur-xl">
@@ -551,8 +550,8 @@ export default function Home() {
                             From models to systems
                           </p>
                           <p className="mt-3 text-sm leading-7 text-slate-300">
-                            Learning in public through repositories that connect
-                            theory, code, and useful outputs.
+                            I put what I&apos;m learning on GitHub, usually as
+                            small projects I can finish.
                           </p>
                         </div>
                       </div>
@@ -586,21 +585,21 @@ export default function Home() {
             >
               <SectionEyebrow>Approach</SectionEyebrow>
               <h2 className="max-w-md text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                A career arc grounded in risk, translated into technical craft.
+                I spent most of my career in risk and treasury. That&apos;s how
+                I approach the work now.
               </h2>
               <p className="mt-6 max-w-xl text-base leading-8 text-slate-300">
-                The work here sits at the intersection of structured thinking
-                and hands-on implementation. The goal is not just to analyze
-                outcomes, but to build workflows that make those outcomes easier
-                to produce again.
+                A lot of what I do is cleaning up processes that get done by
+                hand every month. Once one is written down properly, it&apos;s
+                easier to hand off or improve.
               </p>
               <div className="mt-8 rounded-[1.6rem] border border-white/10 bg-slate-950/45 p-5">
                 <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">
-                  Positioning
+                  Summary
                 </p>
                 <p className="mt-3 text-lg leading-8 text-slate-200">
-                  Finance background. Technical toolkit. Practical interest in
-                  forecasting, automation, and better analytical systems.
+                  Finance and risk background. Python, R, and SQL. I like
+                  forecasting and automation work.
                 </p>
               </div>
             </motion.div>
@@ -639,14 +638,14 @@ export default function Home() {
         <section className="container pb-24 sm:pb-32">
           <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <SectionEyebrow>Live projects</SectionEyebrow>
+              <SectionEyebrow>Projects</SectionEyebrow>
               <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                Tools you can use right now.
+                Things I&apos;ve built.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              A growing index of browser-based projects. Bookmark this page as
-              the easiest way to find every live build.
+              Everything I&apos;ve put online is linked from this page, so this
+              is the easiest place to bookmark.
             </p>
           </div>
 
@@ -708,15 +707,14 @@ export default function Home() {
         <section className="container pb-24 sm:pb-32">
           <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <SectionEyebrow>Selected work</SectionEyebrow>
+              <SectionEyebrow>Repositories</SectionEyebrow>
               <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                Repositories that map the learning journey.
+                GitHub
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              A mix of notebooks, portfolio material, and technical exercises
-              that reflect experimentation, structured learning, and practical
-              implementation.
+              Notebooks, coursework, and experiments. It&apos;s a record of what
+              I&apos;ve been learning.
             </p>
           </div>
 
@@ -751,7 +749,7 @@ export default function Home() {
                     </div>
                     <p className="mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
                       {repo.description ??
-                        "Open repository on GitHub to view the full project details and source materials."}
+                        "Open the repository on GitHub for details and source."}
                     </p>
                   </div>
 
@@ -788,13 +786,11 @@ export default function Home() {
               <div>
                 <SectionEyebrow>Connect</SectionEyebrow>
                 <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                  If you want to follow the transition from analysis to
-                  implementation, start here.
+                  If you want to follow along, this is a good place to start.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
-                  This homepage is designed as a concise entry point into Bryan
-                  Dulog&apos;s work: finance-rooted reasoning, technical
-                  curiosity, and a growing body of practical repositories.
+                  This is my personal site. It&apos;s where I keep the projects
+                  I&apos;m working on and links to the rest of my work.
                 </p>
               </div>
 
@@ -809,7 +805,7 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <Github className="mr-2 h-4 w-4" />
-                    Visit GitHub
+                    GitHub
                   </a>
                 </Button>
                 <Button
@@ -823,7 +819,7 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <Linkedin className="mr-2 h-4 w-4" />
-                    Visit LinkedIn
+                    LinkedIn
                   </a>
                 </Button>
               </div>
