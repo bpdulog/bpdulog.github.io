@@ -18,6 +18,7 @@ import {
   Wallet,
   Languages,
   BookOpen,
+  Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
@@ -133,6 +134,15 @@ const liveProjects = [
     repository: "https://github.com/bpdulog/personal-budget-tracker",
     label: "Finance tool",
     icon: Wallet,
+  },
+  {
+    title: "Utility bill forecast",
+    description:
+      "Estimate monthly gas and electric bills from usage and weather, with winter scenarios and thermostat setback savings.",
+    href: "https://bpdulog.github.io/utility-bill-forecast/",
+    repository: "https://github.com/bpdulog/utility-bill-forecast",
+    label: "Forecasting tool",
+    icon: Zap,
   },
   {
     title: "Polish cases guide",
@@ -414,8 +424,6 @@ export default function Home() {
                   Fifteen years in finance.
                   <br />
                   Now I build things with code.
-                  <br />
-                  Most of them are small.
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
                   I&apos;m <span className="text-white">{displayName}</span>. I
