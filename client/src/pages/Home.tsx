@@ -127,6 +127,15 @@ const liveProjects = [
     icon: ChartNoAxesCombined,
   },
   {
+    title: "Funds transfer pricing (FTP)",
+    description:
+      "Interactive banking explainer and simulator demonstrating how institutions price loans, value deposits, and isolate interest rate duration risk.",
+    href: "https://bpdulog.github.io/funds-transfer-pricing/",
+    repository: "https://github.com/bpdulog/funds-transfer-pricing",
+    label: "Banking & Treasury",
+    icon: Sparkles,
+  },
+  {
     title: "Personal budget tracker",
     description:
       "A budget tracker that runs in the browser. Your data stays on your computer, and you can import transactions from a CSV.",
