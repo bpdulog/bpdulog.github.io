@@ -19,6 +19,7 @@ import {
   Languages,
   BookOpen,
   Zap,
+  Shield,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
@@ -90,6 +91,15 @@ const spotlightLinks = [
 ];
 
 const liveProjects = [
+  {
+    title: "Parent estate guide",
+    description:
+      "A defensive legal and financial playbook for adult children: debt liability rules, debt collector response scripts, and estate solvency modeling.",
+    href: "https://bpdulog.github.io/parent-estate-guide/",
+    repository: "https://github.com/bpdulog/parent-estate-guide",
+    label: "Legal & estate tool",
+    icon: Shield,
+  },
   {
     title: "Loan amortization calculator",
     description:
