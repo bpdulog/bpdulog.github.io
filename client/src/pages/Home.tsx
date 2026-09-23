@@ -164,6 +164,15 @@ const liveProjects = [
     icon: Zap,
   },
   {
+    title: "Worth the Wait?",
+    description:
+      "Explore what a purchase price could become if it were invested instead, with adjustable returns and time horizons.",
+    href: "https://bpdulog.github.io/purchase-opportunity-cost/",
+    repository: "https://github.com/bpdulog/purchase-opportunity-cost",
+    label: "Opportunity cost tool",
+    icon: ChartNoAxesCombined,
+  },
+  {
     title: "Polish cases guide",
     description:
       "An interactive guide to the seven Polish cases and how they're used in sentences.",
