@@ -92,6 +92,15 @@ const spotlightLinks = [
 
 const liveProjects = [
   {
+    title: "Activity dashboard",
+    description:
+      "Compare running and cycling workouts with weekly training time, activity trends, and session details. Upload a CSV to explore your data; the file stays in your browser.",
+    href: "https://bpdulog.github.io/activity-dashboard/",
+    repository: "https://github.com/bpdulog/activity-dashboard",
+    label: "Fitness analytics",
+    icon: ChartNoAxesCombined,
+  },
+  {
     title: "Parent estate guide",
     description:
       "A defensive legal and financial playbook for adult children: debt liability rules, debt collector response scripts, and estate solvency modeling.",
