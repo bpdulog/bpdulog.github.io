@@ -58,7 +58,7 @@ const roles: Role[] = [
     current: true,
     focus: ["Treasury & FTP", "Analytics & Systems"],
     summary:
-      "Leading the financial systems and analytics that make balance-sheet profitability measurable and actionable.",
+      "Own FTP methodology, reporting, and the systems behind them.",
     highlights: [
       "Produce recurring FTP performance analytics and executive reporting for senior management and business leaders.",
       "Design and maintain transfer-pricing methodologies that allocate funding costs and revenues across business units.",
@@ -77,7 +77,7 @@ const roles: Role[] = [
     endYear: 2025.75,
     focus: ["Analytics & Systems", "Treasury & FTP"],
     summary:
-      "Applied financial modeling and automation to pricing, reserves, and reporting operations.",
+      "Loan pricing and reserve models, plus automating reporting.",
     highlights: [
       "Built sophisticated models to price individual and pooled loans for purchase and sale.",
       "Engineered a credit-loss-reserve model for home-improvement loans.",
@@ -95,7 +95,7 @@ const roles: Role[] = [
     endYear: 2024.2,
     focus: ["Treasury & FTP", "Analytics & Systems"],
     summary:
-      "Connected FTP methodology, team leadership, and automation to improve profitability insight and operating capacity.",
+      "FTP analysis, a small team, and automation of manual work.",
     highlights: [
       "Temporarily led a team of four analysts, increasing productivity by 10% during a four-month assignment.",
       "Automated manual work and introduced systems that saved 20 hours each month.",
@@ -115,7 +115,7 @@ const roles: Role[] = [
     endYear: 2022,
     focus: ["Analytics & Systems"],
     summary:
-      "Turned large financial datasets and fast-moving market events into timely, decision-ready investor research.",
+      "Insurance sector research for institutional investors.",
     highlights: [
       "Helped launch coverage of 22 insurance companies in six weeks while managing competing priorities.",
       "Produced weekly and ad-hoc research on industry trends, earnings, M&A, ratings, and model updates.",
@@ -135,7 +135,7 @@ const roles: Role[] = [
     endYear: 2021.5,
     focus: ["Risk & Regulation", "Treasury & FTP"],
     summary:
-      "Assessed capital-markets, liquidity, interest-rate-risk, stress-testing, and capital-planning practices at systemically significant institutions.",
+      "Examined capital markets, liquidity, interest-rate risk, and stress testing at very large banks.",
     highlights: [
       "Served as capital-markets lead examiner for a $100B bank, setting supervisory strategy and leading examinations.",
       "Assessed interest-rate-risk management and stress-testing practices for a $1T bank; presented conclusions to senior bank and OCC leaders.",
@@ -160,7 +160,7 @@ const roles: Role[] = [
     endYear: 2014.4,
     focus: ["Risk & Regulation", "Analytics & Systems"],
     summary:
-      "Delivered risk, controls, fraud-review, and regulatory-reporting work for major financial institutions.",
+      "Risk, controls, and regulatory-reporting work for large banks.",
     highlights: [
       "Managed an engagement to develop operational-risk and controls data for a $300B banking client.",
       "Provided strategic and regulatory guidance to clients including Goldman Sachs and Bank of America.",
@@ -184,7 +184,7 @@ const roles: Role[] = [
     endYear: 2010.75,
     focus: ["Risk & Regulation"],
     summary:
-      "Built the supervisory foundation: examining financial institutions, leading teams, and communicating conclusions to boards.",
+      "Started in bank supervision, examining institutions and presenting findings to boards.",
     highlights: [
       "Led a team of five examiners through a full bank examination for an institution with more than $100M in assets.",
       "Approved workstream ratings and recommendations, acted as lead liaison to management, and presented conclusions to senior management and the board.",

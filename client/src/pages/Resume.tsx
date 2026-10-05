@@ -112,15 +112,13 @@ export default function Resume() {
                 CFA · FRM · Financial systems & treasury risk
               </p>
               <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.94] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
-                Making complex financial systems easier to see, steer, and
-                improve.
+                I run funds transfer pricing and financial systems at a bank.
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                Bryan is a financial-services leader with 15+ years across bank
-                supervision, treasury, funds transfer pricing, financial
-                systems, and data-driven analysis. He pairs regulatory depth
-                with a builder&apos;s instinct for clearer reporting and smarter
-                workflows.
+                I have 15+ years in financial services: bank supervision at the
+                OCC, risk consulting, equity research, and now treasury and
+                funds transfer pricing. I also write Python, R, and SQL to
+                automate reporting and build models.
               </p>
               <div className="mt-9 flex flex-wrap gap-3 print:hidden">
                 <a
@@ -157,7 +155,7 @@ export default function Resume() {
                     ["15+", "Years in financial services"],
                     ["CFA", "Charterholder"],
                     ["FRM", "Financial Risk Manager"],
-                    ["$1T", "Institutional risk scope"],
+                    ["$1T", "Largest bank I examined"],
                   ].map(([value, label]) => (
                     <div
                       key={value}
@@ -175,7 +173,7 @@ export default function Resume() {
                 <div className="mt-5 flex items-start gap-3 rounded-2xl border border-cyan-200/15 bg-cyan-200/8 p-4 text-sm leading-6 text-cyan-50">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                   New York metro area · Open to conversations about treasury,
-                  risk, finance transformation, and analytics leadership.
+                  risk, and analytics roles.
                 </div>
               </div>
             </motion.aside>
@@ -290,13 +288,10 @@ export default function Resume() {
               <div className="max-w-2xl">
                 <Eyebrow>Let&apos;s connect</Eyebrow>
                 <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
-                  Looking for a finance leader who can move from risk insight to
-                  operating change?
+                  Open to conversations about treasury, risk, and analytics roles.
                 </h2>
                 <p className="mt-5 text-base leading-8 text-slate-300">
-                  Bryan brings the regulatory judgment, analytical rigor, and
-                  technical fluency to build better financial decisions and the
-                  systems behind them.
+                  LinkedIn is the best way to reach me. My code is on GitHub.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -315,7 +310,7 @@ export default function Resume() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/6 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
                 >
-                  View technical work <ArrowUpRight className="h-4 w-4" />
+                  See my code <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
             </div>

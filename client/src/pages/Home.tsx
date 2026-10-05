@@ -1,7 +1,5 @@
 /*
-Design philosophy for this page: Neo-financial futurism.
-Use asymmetrical composition, low-key surfaces, precise typography, restrained luminous accents,
-and atmospheric motion that reinforces analytical credibility rather than generic startup energy.
+Design notes: asymmetrical layout, low-key surfaces, restrained accents, and subtle motion.
 */
 
 import { Button } from "@/components/ui/button";
@@ -58,19 +56,19 @@ const featuredRepoNames = [
 
 const principles = [
   {
-    title: "Forecasting mindset",
+    title: "Forecasting",
     description:
       "I come from finance and risk, which is where I learned to model, read trends, and make decisions with incomplete information.",
     icon: ChartNoAxesCombined,
   },
   {
-    title: "Automation focus",
+    title: "Automation",
     description:
       "I use Python, R, and SQL to take over the parts of a process that are repetitive.",
     icon: Workflow,
   },
   {
-    title: "Analytical tooling",
+    title: "Tools people use",
     description:
       "I like projects where the logic is clear and the output is something someone will use.",
     icon: Database,
@@ -103,7 +101,7 @@ const liveProjects = [
   {
     title: "Parent estate guide",
     description:
-      "A defensive legal and financial playbook for adult children: debt liability rules, debt collector response scripts, and estate solvency modeling.",
+      "A guide for adult children on whether they owe a parent's debts, how to respond to debt collectors, and how to check if an estate is solvent.",
     href: "https://bpdulog.github.io/parent-estate-guide/",
     repository: "https://github.com/bpdulog/parent-estate-guide",
     label: "Legal & estate tool",
@@ -148,10 +146,10 @@ const liveProjects = [
   {
     title: "Funds transfer pricing (FTP)",
     description:
-      "Interactive banking explainer and simulator demonstrating how institutions price loans, value deposits, and isolate interest rate duration risk.",
+      "A simulator that shows how a bank prices loans, credits deposits, and separates out interest-rate risk.",
     href: "https://bpdulog.github.io/funds-transfer-pricing/",
     repository: "https://github.com/bpdulog/funds-transfer-pricing",
-    label: "Banking & Treasury",
+    label: "Finance tool",
     icon: Sparkles,
   },
   {
@@ -408,7 +406,7 @@ export default function Home() {
             <div>
               <p className="text-sm font-medium text-white">{displayName}</p>
               <p className="text-xs uppercase tracking-[0.28em] text-slate-400">
-                Finance × Code × Systems
+                Finance and code
               </p>
             </div>
           </div>
@@ -454,8 +452,7 @@ export default function Home() {
               <SectionEyebrow>About</SectionEyebrow>
               <div className="space-y-7">
                 <p className="max-w-xl text-sm uppercase tracking-[0.32em] text-slate-400">
-                  I build tools for forecasting and automation. Everything I
-                  make goes on GitHub.
+                  Finance to code
                 </p>
                 <h1 className="max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
                   Fifteen years in finance.
@@ -465,11 +462,13 @@ export default function Home() {
                 <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
                   I&apos;m <span className="text-white">{displayName}</span>. I
                   live in New York and worked in finance and risk management for
-                  about fifteen years. These days I spend most of my time
-                  writing <span className="text-cyan-100">Python</span>,
+                  about fifteen years, and I&apos;m currently a director of
+                  funds transfer pricing and financial systems. I also
+                  spend a lot of time writing <span className="text-cyan-100">Python</span>,
                   <span className="text-cyan-100"> R</span>, and{" "}
                   <span className="text-cyan-100">SQL</span>, usually on
-                  forecasting or replacing manual reporting work.
+                  forecasting or replacing manual reporting work. Everything I
+                  build goes on GitHub.
                 </p>
               </div>
 
@@ -592,11 +591,11 @@ export default function Home() {
                             Current direction
                           </p>
                           <p className="mt-4 text-2xl font-medium text-white">
-                            From models to systems
+                            Small projects, finished
                           </p>
                           <p className="mt-3 text-sm leading-7 text-slate-300">
                             I put what I&apos;m learning on GitHub, usually as
-                            small projects I can finish.
+                            projects small enough to finish.
                           </p>
                         </div>
                       </div>
@@ -638,15 +637,6 @@ export default function Home() {
                 hand every month. Once one is written down properly, it&apos;s
                 easier to hand off or improve.
               </p>
-              <div className="mt-8 rounded-[1.6rem] border border-white/10 bg-slate-950/45 p-5">
-                <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-400">
-                  Summary
-                </p>
-                <p className="mt-3 text-lg leading-8 text-slate-200">
-                  Finance and risk background. Python, R, and SQL. I like
-                  forecasting and automation work.
-                </p>
-              </div>
             </motion.div>
 
             <div className="grid gap-5 sm:grid-cols-3">
@@ -689,8 +679,8 @@ export default function Home() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              Everything I&apos;ve put online is linked from this page, so this
-              is the easiest place to bookmark.
+              Most are small, single-purpose tools. Each one links to its
+              source.
             </p>
           </div>
 
@@ -758,8 +748,8 @@ export default function Home() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              Notebooks, coursework, and experiments. It&apos;s a record of what
-              I&apos;ve been learning.
+              Notebooks and coursework from my MBA and the machine learning
+              courses I&apos;ve taken.
             </p>
           </div>
 
@@ -800,9 +790,11 @@ export default function Home() {
 
                   <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-5 text-sm text-slate-300">
                     <div className="flex flex-wrap gap-3">
-                      <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1.5">
-                        Stars: {repo.stargazers_count}
-                      </span>
+                      {repo.stargazers_count > 0 && (
+                        <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1.5">
+                          Stars: {repo.stargazers_count}
+                        </span>
+                      )}
                       <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1.5">
                         Updated {new Date(repo.updated_at).getFullYear()}
                       </span>
@@ -831,11 +823,10 @@ export default function Home() {
               <div>
                 <SectionEyebrow>Connect</SectionEyebrow>
                 <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                  If you want to follow along, this is a good place to start.
+                  Want to see more or get in touch?
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
-                  This is my personal site. It&apos;s where I keep the projects
-                  I&apos;m working on and links to the rest of my work.
+                  GitHub has the code. LinkedIn is the best way to reach me.
                 </p>
               </div>
 
