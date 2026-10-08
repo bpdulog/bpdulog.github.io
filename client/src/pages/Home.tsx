@@ -90,6 +90,15 @@ const spotlightLinks = [
 
 const liveProjects = [
   {
+    title: "Fuel vs. time savings",
+    description:
+      "Compare estimated fuel costs and travel times at different driving speeds, and see how much each minute saved costs.",
+    href: "https://bpdulog.github.io/fuel-time-calculator/",
+    repository: "https://github.com/bpdulog/fuel-time-calculator",
+    label: "Travel tool",
+    icon: Calculator,
+  },
+  {
     title: "Activity dashboard",
     description:
       "Compare running and cycling workouts with weekly training time, activity trends, and session details. Upload a CSV to explore your data; the file stays in your browser.",
