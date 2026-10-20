@@ -88,14 +88,27 @@ const spotlightLinks = [
   },
 ];
 
-const liveProjects = [
+const projectCategories = ["Finance", "Languages", "Data & guides"] as const;
+
+type ProjectCategory = (typeof projectCategories)[number];
+
+const liveProjects: {
+  title: string;
+  description: string;
+  href: string;
+  repository: string;
+  category: ProjectCategory;
+  featured?: boolean;
+  icon: typeof Calculator;
+}[] = [
   {
     title: "Fuel vs. time savings",
     description:
       "Compare estimated fuel costs and travel times at different driving speeds, and see how much each minute saved costs.",
     href: "https://bpdulog.github.io/fuel-time-calculator/",
     repository: "https://github.com/bpdulog/fuel-time-calculator",
-    label: "Travel tool",
+    category: "Finance",
+    featured: true,
     icon: Calculator,
   },
   {
@@ -104,7 +117,8 @@ const liveProjects = [
       "Compare running and cycling workouts with weekly training time, activity trends, and session details. Upload a CSV to explore your data; the file stays in your browser.",
     href: "https://bpdulog.github.io/activity-dashboard/",
     repository: "https://github.com/bpdulog/activity-dashboard",
-    label: "Fitness analytics",
+    category: "Data & guides",
+    featured: true,
     icon: ChartNoAxesCombined,
   },
   {
@@ -113,7 +127,7 @@ const liveProjects = [
       "A guide for adult children on whether they owe a parent's debts, how to respond to debt collectors, and how to check if an estate is solvent.",
     href: "https://bpdulog.github.io/parent-estate-guide/",
     repository: "https://github.com/bpdulog/parent-estate-guide",
-    label: "Legal & estate tool",
+    category: "Data & guides",
     icon: Shield,
   },
   {
@@ -122,7 +136,7 @@ const liveProjects = [
       "Work out a monthly payoff plan, try extra payments, and see what they do to the interest.",
     href: "https://bpdulog.github.io/loan-amortization-calculator/",
     repository: "https://github.com/bpdulog/loan-amortization-calculator",
-    label: "Interactive tool",
+    category: "Finance",
     icon: Calculator,
   },
   {
@@ -131,7 +145,7 @@ const liveProjects = [
       "An interactive tool for Tagalog verb forms. I built it for studying.",
     href: "https://bpdulog.github.io/tagalog-conjugator/",
     repository: "https://github.com/bpdulog/tagalog-conjugator",
-    label: "Language tool",
+    category: "Languages",
     icon: Languages,
   },
   {
@@ -140,7 +154,7 @@ const liveProjects = [
       "A guide to Tagalog pronouns, respectful speech, word order, verb forms, and focus.",
     href: "https://bpdulog.github.io/tagalog-pronouns-guide/",
     repository: "https://github.com/bpdulog/tagalog-pronouns-guide",
-    label: "Learning guide",
+    category: "Languages",
     icon: BookOpen,
   },
   {
@@ -149,7 +163,7 @@ const liveProjects = [
       "Model dividend growth, price appreciation, and regular contributions over time.",
     href: "https://bpdulog.github.io/dividend-projections/",
     repository: "https://github.com/bpdulog/dividend-projections",
-    label: "Finance tool",
+    category: "Finance",
     icon: ChartNoAxesCombined,
   },
   {
@@ -158,7 +172,8 @@ const liveProjects = [
       "A simulator that shows how a bank prices loans, credits deposits, and separates out interest-rate risk.",
     href: "https://bpdulog.github.io/funds-transfer-pricing/",
     repository: "https://github.com/bpdulog/funds-transfer-pricing",
-    label: "Finance tool",
+    category: "Finance",
+    featured: true,
     icon: Sparkles,
   },
   {
@@ -167,7 +182,7 @@ const liveProjects = [
       "A budget tracker that runs in the browser. Your data stays on your computer, and you can import transactions from a CSV.",
     href: "https://bpdulog.github.io/personal-budget-tracker/",
     repository: "https://github.com/bpdulog/personal-budget-tracker",
-    label: "Finance tool",
+    category: "Finance",
     icon: Wallet,
   },
   {
@@ -176,7 +191,7 @@ const liveProjects = [
       "Estimate monthly gas and electric bills from usage and weather, with winter scenarios and thermostat setback savings.",
     href: "https://bpdulog.github.io/utility-bill-forecast/",
     repository: "https://github.com/bpdulog/utility-bill-forecast",
-    label: "Forecasting tool",
+    category: "Finance",
     icon: Zap,
   },
   {
@@ -185,7 +200,7 @@ const liveProjects = [
       "Explore what a purchase price could become if it were invested instead, with adjustable returns and time horizons.",
     href: "https://bpdulog.github.io/purchase-opportunity-cost/",
     repository: "https://github.com/bpdulog/purchase-opportunity-cost",
-    label: "Opportunity cost tool",
+    category: "Finance",
     icon: ChartNoAxesCombined,
   },
   {
@@ -194,7 +209,7 @@ const liveProjects = [
       "An interactive guide to the seven Polish cases and how they're used in sentences.",
     href: "https://bpdulog.github.io/polish-cases-guide/",
     repository: "https://github.com/bpdulog/polish-cases-guide",
-    label: "Language tool",
+    category: "Languages",
     icon: Languages,
   },
 ];
@@ -284,6 +299,16 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [profile, setProfile] = useState<GitHubProfile | null>(null);
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
+  const [projectFilter, setProjectFilter] = useState<ProjectCategory | "All">(
+    "All",
+  );
+
+  const featuredProjects = liveProjects.filter((project) => project.featured);
+  const otherProjects = liveProjects.filter(
+    (project) =>
+      !project.featured &&
+      (projectFilter === "All" || project.category === projectFilter),
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -693,8 +718,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-2">
-            {liveProjects.map((project, index) => {
+          <div className="grid gap-5 lg:grid-cols-3">
+            {featuredProjects.map((project, index) => {
               const Icon = project.icon;
 
               return (
@@ -707,20 +732,20 @@ export default function Home() {
                   className="group relative overflow-hidden rounded-[2rem] border border-amber-200/15 bg-white/6 p-6 backdrop-blur-2xl transition duration-500 hover:-translate-y-1.5 hover:border-amber-200/30 hover:bg-white/8 sm:p-7"
                 >
                   <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full border border-amber-200/15 bg-amber-200/5 blur-[1px] transition duration-500 group-hover:scale-110" />
-                  <div className="relative flex h-full flex-col justify-between gap-10">
+                  <div className="relative flex h-full flex-col justify-between gap-8">
                     <div>
                       <div className="flex items-start justify-between gap-4">
                         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200/20 bg-amber-200/10 text-amber-100">
                           <Icon className="h-5 w-5" />
                         </div>
                         <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
-                          {project.label}
+                          {project.category}
                         </span>
                       </div>
                       <h3 className="mt-7 text-2xl font-medium tracking-[-0.03em] text-white">
                         {project.title}
                       </h3>
-                      <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+                      <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
                         {project.description}
                       </p>
                     </div>
@@ -741,6 +766,76 @@ export default function Home() {
                         View source
                       </a>
                     </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 flex flex-wrap gap-1.5 sm:gap-2" role="group" aria-label="Filter projects">
+            {(["All", ...projectCategories] as const).map((category) => (
+              <button
+                key={category}
+                type="button"
+                aria-pressed={projectFilter === category}
+                onClick={() => setProjectFilter(category)}
+                className={
+                  projectFilter === category
+                    ? "rounded-full border border-amber-200/40 bg-amber-200/15 px-3 py-1.5 text-[13px] sm:px-4 sm:text-sm text-amber-100 transition"
+                    : "rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] sm:px-4 sm:text-sm text-slate-400 transition hover:border-white/20 hover:text-white"
+                }
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {otherProjects.map((project) => {
+              const Icon = project.icon;
+
+              return (
+                <motion.article
+                  key={project.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="group flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-2xl transition duration-300 hover:border-amber-200/25 hover:bg-white/8"
+                >
+                  <div>
+                    <div className="flex items-start gap-3">
+                      <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-amber-200/20 bg-amber-200/10 text-amber-100">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <h3 className="pt-0.5 text-lg leading-7 font-medium tracking-[-0.02em] text-white">
+                        <a
+                          href={project.href}
+                          className="transition hover:text-amber-100"
+                        >
+                          {project.title}
+                        </a>
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-slate-400">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4 text-sm">
+                    <a
+                      href={project.href}
+                      className="inline-flex items-center gap-1.5 text-amber-100 transition hover:text-white"
+                    >
+                      Open <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                    <a
+                      href={project.repository}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-slate-500 transition hover:text-white"
+                    >
+                      Source
+                    </a>
                   </div>
                 </motion.article>
               );
