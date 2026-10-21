@@ -131,6 +131,15 @@ const liveProjects: {
     icon: Shield,
   },
   {
+    title: "Next Chapter layoff guide",
+    description:
+      "A practical guide for navigating a layoff, with a step-by-step checklist, questions for HR, and help comparing benefits and next steps.",
+    href: "https://bpdulog.github.io/next-chapter-guide/",
+    repository: "https://github.com/bpdulog/next-chapter-guide",
+    category: "Data & guides",
+    icon: BookOpen,
+  },
+  {
     title: "Loan amortization calculator",
     description:
       "Work out a monthly payoff plan, try extra payments, and see what they do to the interest.",
