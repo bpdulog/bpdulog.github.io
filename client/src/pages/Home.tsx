@@ -102,6 +102,15 @@ const liveProjects: {
   icon: typeof Calculator;
 }[] = [
   {
+    title: "Time series forecasting",
+    description:
+      "Explore time series, fit forecasting models, review diagnostics, and export forecasts from your own data.",
+    href: "https://bpdulog.github.io/timeseries-forecasting-app/",
+    repository: "https://github.com/bpdulog/timeseries-forecasting-app",
+    category: "Data & guides",
+    icon: ChartNoAxesCombined,
+  },
+  {
     title: "Fuel vs. time savings",
     description:
       "Compare estimated fuel costs and travel times at different driving speeds, and see how much each minute saved costs.",
