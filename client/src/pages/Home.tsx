@@ -20,7 +20,10 @@ import {
   Shield,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import TiltCard from "@/components/TiltCard";
+
+const RiskSurface = lazy(() => import("@/components/RiskSurface"));
 
 type GitHubProfile = {
   avatar_url: string;
@@ -428,6 +431,9 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#07111f] text-slate-100 selection:bg-cyan-300/30 selection:text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(110,231,255,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(255,194,122,0.10),transparent_26%),linear-gradient(180deg,#08111d_0%,#091523_48%,#07111f_100%)]" />
+      <Suspense fallback={null}>
+        <RiskSurface />
+      </Suspense>
       <div className="noise-overlay pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="orbital orbital-one" />
@@ -741,8 +747,8 @@ export default function Home() {
               const Icon = project.icon;
 
               return (
+                <TiltCard key={project.title}>
                 <motion.article
-                  key={project.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.22 }}
@@ -786,6 +792,7 @@ export default function Home() {
                     </div>
                   </div>
                 </motion.article>
+                </TiltCard>
               );
             })}
           </div>
@@ -877,8 +884,8 @@ export default function Home() {
 
           <div className="grid gap-5 lg:grid-cols-2">
             {featuredRepos.map((repo, index) => (
+              <TiltCard key={repo.id}>
               <motion.a
-                key={repo.id}
                 href={repo.html_url}
                 target="_blank"
                 rel="noreferrer"
@@ -928,6 +935,7 @@ export default function Home() {
                   </div>
                 </div>
               </motion.a>
+              </TiltCard>
             ))}
           </div>
         </section>
