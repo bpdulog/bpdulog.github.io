@@ -1,235 +1,54 @@
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import {
+  AnimatePresence,
+  MotionConfig,
+  motion,
+  useInView,
+} from "framer-motion";
 import {
   ChevronRight,
   Clock3,
   Layers,
   ShieldCheck,
   TrendingUp,
+  X,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
+import CommandPalette from "@/components/CommandPalette";
+import JobMatch from "@/components/JobMatch";
+import {
+  focusAreas,
+  focusStyles,
+  roles,
+  type FocusArea,
+  type FocusTag,
+} from "@/lib/career";
+import {
+  highlightForSkill,
+  skillsForRole,
+  type Highlight,
+  type Skill,
+} from "@/lib/skills";
 
-type FocusArea =
-  | "All"
-  | "Treasury & FTP"
-  | "Risk & Regulation"
-  | "Analytics & Systems";
-
-type FocusTag = Exclude<FocusArea, "All">;
-
-type Metric = {
-  value: number;
-  prefix?: string;
-  suffix?: string;
-  label: string;
-};
-
-type Role = {
-  company: string;
-  shortName: string;
-  location: string;
-  title: string;
-  period: string;
-  startYear: number;
-  endYear: number;
-  current?: boolean;
-  focus: FocusTag[];
-  summary: string;
-  highlights: string[];
-  signal: string;
-  metric?: Metric;
-};
-
-const focusAreas: FocusArea[] = [
-  "All",
-  "Treasury & FTP",
-  "Risk & Regulation",
-  "Analytics & Systems",
-];
-
-const roles: Role[] = [
-  {
-    company: "Webster Bank",
-    shortName: "Webster",
-    location: "White Plains, NY",
-    title: "Director, Funds Transfer Pricing & Financial Systems",
-    period: "Oct 2025 - Present",
-    startYear: 2025.75,
-    endYear: 2026.7,
-    current: true,
-    focus: ["Treasury & FTP", "Analytics & Systems"],
-    summary:
-      "Own FTP methodology, reporting, and the systems behind them.",
-    highlights: [
-      "Produce recurring FTP performance analytics and executive reporting for senior management and business leaders.",
-      "Design and maintain transfer-pricing methodologies that allocate funding costs and revenues across business units.",
-      "Partner with finance and technology teams on system enhancements, workflow improvements, and analytical features.",
-      "Monitor rate curves and pricing mechanisms for alignment with markets, regulatory expectations, and risk standards.",
-    ],
-    signal: "Current role",
-  },
-  {
-    company: "USAlliance Financial",
-    shortName: "USAlliance",
-    location: "Rye, NY",
-    title: "Financial Analyst",
-    period: "Mar 2024 - Oct 2025",
-    startYear: 2024.2,
-    endYear: 2025.75,
-    focus: ["Analytics & Systems", "Treasury & FTP"],
-    summary:
-      "Loan pricing and reserve models, plus automating reporting.",
-    highlights: [
-      "Built sophisticated models to price individual and pooled loans for purchase and sale.",
-      "Engineered a credit-loss-reserve model for home-improvement loans.",
-      "Automated manual financial-reporting steps to improve speed and repeatability.",
-    ],
-    signal: "Modeling + automation",
-  },
-  {
-    company: "PNC Bank",
-    shortName: "PNC",
-    location: "New York, NY",
-    title: "Funds Transfer Pricing Vice President",
-    period: "Apr 2022 - Mar 2024",
-    startYear: 2022.25,
-    endYear: 2024.2,
-    focus: ["Treasury & FTP", "Analytics & Systems"],
-    summary:
-      "FTP analysis, a small team, and automation of manual work.",
-    highlights: [
-      "Temporarily led a team of four analysts, increasing productivity by 10% during a four-month assignment.",
-      "Automated manual work and introduced systems that saved 20 hours each month.",
-      "Reviewed balance-sheet and profitability metrics to inform pricing and funding recommendations for net interest income, liquidity, and interest-rate risk.",
-      "Prepared executive reporting and maintained relationships with auditors and regulators.",
-    ],
-    signal: "10% productivity gain",
-    metric: { value: 10, suffix: "%", label: "Productivity gain led" },
-  },
-  {
-    company: "Wolfe Research",
-    shortName: "Wolfe",
-    location: "New York, NY",
-    title: "Equity Research Associate",
-    period: "Jun 2021 - Jan 2022",
-    startYear: 2021.4,
-    endYear: 2022,
-    focus: ["Analytics & Systems"],
-    summary:
-      "Insurance sector research for institutional investors.",
-    highlights: [
-      "Helped launch coverage of 22 insurance companies in six weeks while managing competing priorities.",
-      "Produced weekly and ad-hoc research on industry trends, earnings, M&A, ratings, and model updates.",
-      "Cleaned and analyzed large-scale datasets, translating raw inputs into clear tables and charts for clients.",
-    ],
-    signal: "22 companies / 6 weeks",
-    metric: { value: 22, label: "Companies covered in six weeks" },
-  },
-  {
-    company:
-      "U.S. Department of the Treasury - Office of the Comptroller of the Currency",
-    shortName: "OCC",
-    location: "New York, NY",
-    title: "Large Bank Examiner",
-    period: "Jun 2014 - Jun 2021",
-    startYear: 2014.4,
-    endYear: 2021.5,
-    focus: ["Risk & Regulation", "Treasury & FTP"],
-    summary:
-      "Examined capital markets, liquidity, interest-rate risk, and stress testing at very large banks.",
-    highlights: [
-      "Served as capital-markets lead examiner for a $100B bank, setting supervisory strategy and leading examinations.",
-      "Assessed interest-rate-risk management and stress-testing practices for a $1T bank; presented conclusions to senior bank and OCC leaders.",
-      "Evaluated capital levels, recovery planning, liquidity runoff assumptions, LCR/NSFR metrics, and internal liquidity stress testing.",
-      "Reviewed statistical models for risk-weighted assets and operational risk; coordinated Basel III retail-credit feedback with other agencies.",
-    ],
-    signal: "$1T risk oversight",
-    metric: {
-      value: 1,
-      prefix: "$",
-      suffix: "T",
-      label: "Institutional risk scope",
-    },
-  },
-  {
-    company: "KPMG",
-    shortName: "KPMG",
-    location: "New York, NY",
-    title: "Risk Consultant",
-    period: "Oct 2010 - May 2014",
-    startYear: 2010.75,
-    endYear: 2014.4,
-    focus: ["Risk & Regulation", "Analytics & Systems"],
-    summary:
-      "Risk, controls, and regulatory-reporting work for large banks.",
-    highlights: [
-      "Managed an engagement to develop operational-risk and controls data for a $300B banking client.",
-      "Provided strategic and regulatory guidance to clients including Goldman Sachs and Bank of America.",
-      "Reconciled general-ledger data to regulatory-reporting line items to strengthen reporting accuracy and control.",
-    ],
-    signal: "$300B client engagement",
-    metric: {
-      value: 300,
-      prefix: "$",
-      suffix: "B",
-      label: "Client engagement led",
-    },
-  },
-  {
-    company: "U.S. Department of the Treasury - Office of Thrift Supervision",
-    shortName: "OTS",
-    location: "Jersey City, NJ",
-    title: "Bank Examiner",
-    period: "Jul 2008 - Oct 2010",
-    startYear: 2008.5,
-    endYear: 2010.75,
-    focus: ["Risk & Regulation"],
-    summary:
-      "Started in bank supervision, examining institutions and presenting findings to boards.",
-    highlights: [
-      "Led a team of five examiners through a full bank examination for an institution with more than $100M in assets.",
-      "Approved workstream ratings and recommendations, acted as lead liaison to management, and presented conclusions to senior management and the board.",
-    ],
-    signal: "Examination leadership",
-    metric: { value: 5, label: "Examiners led on one exam" },
-  },
-];
-
-const focusStyles: Record<
-  FocusTag,
-  { bar: string; dot: string; chip: string }
-> = {
-  "Treasury & FTP": {
-    bar: "from-cyan-300 to-cyan-200/50",
-    dot: "bg-cyan-200",
-    chip: "border-cyan-200/25 bg-cyan-200/10 text-cyan-50",
-  },
-  "Risk & Regulation": {
-    bar: "from-amber-300 to-amber-200/50",
-    dot: "bg-amber-200",
-    chip: "border-amber-200/25 bg-amber-200/10 text-amber-50",
-  },
-  "Analytics & Systems": {
-    bar: "from-emerald-300 to-emerald-200/50",
-    dot: "bg-emerald-200",
-    chip: "border-emerald-200/25 bg-emerald-200/10 text-emerald-50",
-  },
-};
+const SkillGraph = lazy(() => import("@/components/SkillGraph"));
 
 const kpis = [
   {
     icon: Clock3,
     value: 15,
+    viz: "years" as const,
     suffix: "+",
     label: "Years in financial services",
   },
   {
     icon: Layers,
     value: 7,
+    viz: "roles" as const,
     label: "Roles across banking, consulting, and regulation",
   },
   {
     icon: ShieldCheck,
     value: 1,
+    viz: "scope" as const,
     prefix: "$",
     suffix: "T",
     label: "Peak institutional risk scope",
@@ -237,6 +56,7 @@ const kpis = [
   {
     icon: TrendingUp,
     value: 10,
+    viz: "ring" as const,
     suffix: "%",
     label: "Productivity gain led at PNC",
   },
@@ -309,8 +129,111 @@ function AnimatedNumber({
   );
 }
 
+type KpiViz = "years" | "roles" | "scope" | "ring";
+
+const vizTransition = (i: number, total: number) => ({
+  duration: 0.5,
+  delay: 0.25 + (i / total) * 0.7,
+  ease: [0.22, 1, 0.36, 1] as const,
+});
+
+/** Small, truthful visual behind each KPI, drawn in when scrolled into view. */
+function KpiGraphic({ kind }: { kind: KpiViz }) {
+  const inView = { initial: "hidden", whileInView: "shown" } as const;
+  const viewport = { once: true, amount: 0.6 } as const;
+
+  if (kind === "years") {
+    // one bar per year of experience
+    return (
+      <div className="flex h-8 items-end gap-[3px]" aria-hidden>
+        {Array.from({ length: 15 }, (_, i) => (
+          <motion.span
+            key={i}
+            {...inView}
+            viewport={viewport}
+            variants={{ hidden: { scaleY: 0 }, shown: { scaleY: 1 } }}
+            transition={vizTransition(i, 15)}
+            style={{ height: `${28 + (i / 14) * 72}%`, originY: 1 }}
+            className="w-[3px] rounded-full bg-cyan-200/70"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (kind === "roles") {
+    return (
+      <div className="flex h-8 items-center gap-1.5" aria-hidden>
+        {roles
+          .slice()
+          .reverse()
+          .map((role, i) => (
+            <motion.span
+              key={role.company}
+              {...inView}
+              viewport={viewport}
+              variants={{
+                hidden: { scale: 0, opacity: 0 },
+                shown: { scale: 1, opacity: 1 },
+              }}
+              transition={vizTransition(i, roles.length)}
+              className={`h-2 w-2 rounded-full ${focusStyles[role.focus[0]].dot}`}
+            />
+          ))}
+      </div>
+    );
+  }
+
+  if (kind === "scope") {
+    // institution sizes examined or advised, log scale: $100M, $100B, $300B, $1T
+    const bars = [0.18, 0.7, 0.86, 1];
+    return (
+      <div className="flex h-8 items-end gap-1.5" aria-hidden>
+        {bars.map((h, i) => (
+          <motion.span
+            key={i}
+            {...inView}
+            viewport={viewport}
+            variants={{ hidden: { scaleY: 0 }, shown: { scaleY: 1 } }}
+            transition={vizTransition(i, bars.length)}
+            style={{ height: `${h * 100}%`, originY: 1 }}
+            className="w-2 rounded-sm bg-amber-200/70"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 36 36" className="h-8 w-8 -rotate-90" aria-hidden>
+      <circle
+        cx="18"
+        cy="18"
+        r="14"
+        fill="none"
+        strokeWidth="4"
+        className="stroke-white/10"
+      />
+      <motion.circle
+        cx="18"
+        cy="18"
+        r="14"
+        fill="none"
+        strokeWidth="4"
+        strokeLinecap="round"
+        className="stroke-emerald-300"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 0.1 }}
+        viewport={viewport}
+        transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </svg>
+  );
+}
+
 function KpiTile({
   icon: Icon,
+  viz,
   value,
   prefix,
   suffix,
@@ -318,6 +241,7 @@ function KpiTile({
   index,
 }: {
   icon: typeof Clock3;
+  viz: KpiViz;
   value: number;
   prefix?: string;
   suffix?: string;
@@ -332,7 +256,10 @@ function KpiTile({
       transition={{ duration: 0.5, delay: index * 0.07 }}
       className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-cyan-200/25 hover:bg-white/8"
     >
-      <Icon className="h-4 w-4 text-cyan-100" />
+      <div className="flex items-start justify-between gap-3">
+        <Icon className="h-4 w-4 text-cyan-100" />
+        <KpiGraphic kind={viz} />
+      </div>
       <p className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-white">
         <AnimatedNumber value={value} prefix={prefix} suffix={suffix} />
       </p>
@@ -357,15 +284,54 @@ export default function CareerCommandCenter() {
   const activeRole =
     roles.find((role) => role.company === selectedRole) ?? roles[0];
 
+  const [highlight, setHighlight] = useState<Highlight | null>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  const isDimmed = (role: (typeof roles)[number]) =>
+    (activeFocus !== "All" && !role.focus.includes(activeFocus)) ||
+    (highlight !== null && !highlight.roles.has(role.company));
+
   const filteredRoles = useMemo(
-    () =>
-      roles.filter(
-        (role) => activeFocus === "All" || role.focus.includes(activeFocus),
-      ),
-    [activeFocus],
+    () => roles.filter((role) => !isDimmed(role)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeFocus, highlight],
   );
 
+  // Matching roles rise to the top; the layout animation below slides rows
+  // into their new positions. Chronological order is kept within each group.
+  const orderedRoles = useMemo(
+    () => [
+      ...roles.filter((role) => !isDimmed(role)),
+      ...roles.filter((role) => isDimmed(role)),
+    ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeFocus, highlight],
+  );
+
+  const activeRoleSkills = useMemo(
+    () => skillsForRole(activeRole),
+    [activeRole],
+  );
+
+  const openRole = (company: string) => {
+    setSelectedRole(company);
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    requestAnimationFrame(() =>
+      detailRef.current?.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "nearest",
+      }),
+    );
+  };
+
+  const pickSkill = (skill: Skill) => setHighlight(highlightForSkill(skill));
+  const toggleFocus = (tag: FocusTag) =>
+    setActiveFocus((current) => (current === tag ? "All" : tag));
+
   return (
+    <MotionConfig reducedMotion="user">
     <section id="experience" className="container scroll-mt-8 pb-24 sm:pb-32">
       <div className="mb-9 max-w-3xl">
         <Eyebrow>Career command center</Eyebrow>
@@ -383,6 +349,7 @@ export default function CareerCommandCenter() {
           <KpiTile
             key={kpi.label}
             icon={kpi.icon}
+            viz={kpi.viz}
             value={kpi.value}
             prefix={kpi.prefix}
             suffix={kpi.suffix}
@@ -393,6 +360,12 @@ export default function CareerCommandCenter() {
       </div>
 
       <div className="mb-6 flex flex-wrap items-center gap-2 print:hidden">
+        <CommandPalette
+          onPickRole={openRole}
+          onPickSkill={pickSkill}
+          onPickFocus={setActiveFocus}
+        />
+        <span aria-hidden className="mx-1 hidden h-5 w-px bg-white/10 sm:block" />
         {focusAreas.map((focus) => (
           <button
             key={focus}
@@ -408,6 +381,17 @@ export default function CareerCommandCenter() {
             {focus}
           </button>
         ))}
+        {highlight ? (
+          <button
+            type="button"
+            onClick={() => setHighlight(null)}
+            className="inline-flex items-center gap-1.5 rounded-full border border-amber-200/30 bg-amber-200/10 px-3.5 py-2 text-sm text-amber-50 transition hover:bg-amber-200/20"
+          >
+            Highlighting: {highlight.label}
+            <X className="h-3.5 w-3.5" />
+            <span className="sr-only">Clear highlight</span>
+          </button>
+        ) : null}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
@@ -449,22 +433,23 @@ export default function CareerCommandCenter() {
               </div>
 
               <div className="space-y-2">
-                {roles.map((role, index) => {
+                {orderedRoles.map((role, index) => {
                   const isSelected = role.company === selectedRole;
-                  const isDimmed =
-                    activeFocus !== "All" && !role.focus.includes(activeFocus);
+                  const dimmed = isDimmed(role);
                   const style = focusStyles[role.focus[0]];
                   return (
-                    <button
+                    <motion.button
+                      layout="position"
+                      transition={{ type: "spring", stiffness: 380, damping: 36 }}
                       key={role.company}
                       type="button"
                       onClick={() => setSelectedRole(role.company)}
                       aria-pressed={isSelected}
-                      className={`grid w-full grid-cols-[104px_1fr] items-center gap-3 rounded-2xl border px-3 py-2.5 text-left transition duration-300 ${
+                      className={`grid w-full grid-cols-[104px_1fr] items-center gap-3 rounded-2xl border px-3 py-2.5 text-left transition-[opacity,background-color,border-color] duration-300 ${
                         isSelected
                           ? "border-cyan-200/30 bg-cyan-200/10"
                           : "border-transparent hover:border-white/15 hover:bg-white/5"
-                      } ${isDimmed ? "opacity-35" : "opacity-100"}`}
+                      } ${dimmed ? "opacity-35" : "opacity-100"}`}
                     >
                       <span className="min-w-0">
                         <span className="block truncate text-sm font-semibold text-white">
@@ -511,7 +496,7 @@ export default function CareerCommandCenter() {
                           </span>
                         ) : null}
                       </span>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
@@ -520,11 +505,12 @@ export default function CareerCommandCenter() {
 
           <p className="mt-5 text-xs leading-6 text-slate-500">
             Showing {filteredRoles.length} of {roles.length} roles for the
-            selected focus. Bar length reflects time in each seat.
+            current filter; matches move to the top. Bar length reflects time
+            in each seat.
           </p>
         </div>
 
-        <div className="relative">
+        <div className="relative scroll-mt-6" ref={detailRef}>
           <AnimatePresence mode="wait">
             <motion.article
               key={activeRole.company}
@@ -595,6 +581,33 @@ export default function CareerCommandCenter() {
                 </ul>
               </div>
 
+              {activeRoleSkills.length > 0 ? (
+                <div className="mt-7 print:hidden">
+                  <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-400">
+                    Skills in this role
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {activeRoleSkills.map((skill) => {
+                      const hit = highlight?.skills.has(skill.id);
+                      return (
+                        <button
+                          key={skill.id}
+                          type="button"
+                          onClick={() => pickSkill(skill)}
+                          className={`rounded-full border px-2.5 py-1 text-xs transition ${
+                            hit
+                              ? "border-amber-200/40 bg-amber-200/15 text-amber-50"
+                              : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
+                          }`}
+                        >
+                          {skill.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+
               <div className="mt-7 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-500 print:hidden">
                 <ChevronRight className="h-3.5 w-3.5" />
                 Select another role on the timeline
@@ -603,6 +616,43 @@ export default function CareerCommandCenter() {
           </AnimatePresence>
         </div>
       </div>
+
+      <div className="resume-panel mt-8 rounded-[2rem] border border-white/12 bg-white/6 p-5 backdrop-blur-2xl sm:p-7 print:hidden">
+        <div className="mb-5 max-w-2xl">
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-400">
+            Skills &amp; roles graph
+          </p>
+          <p className="mt-2 text-sm leading-6 text-slate-400">
+            Roles connect to the skills they evidenced. Pick a focus above and
+            that cluster pulls to the center; click a skill to see every role
+            behind it.
+          </p>
+        </div>
+        <Suspense
+          fallback={
+            <div className="h-[440px] rounded-[1.5rem] border border-white/10 bg-[#050d18]/70 sm:h-[540px]" />
+          }
+        >
+          <SkillGraph
+            focus={activeFocus}
+            highlight={highlight}
+            selectedRole={selectedRole}
+            onToggleFocus={toggleFocus}
+            onSelectRole={openRole}
+            onSelectSkill={pickSkill}
+          />
+        </Suspense>
+      </div>
+
+      <div className="mt-8">
+        <JobMatch
+          active={highlight?.label === "Job posting match"}
+          onApply={setHighlight}
+          onClear={() => setHighlight(null)}
+          onSelectRole={openRole}
+        />
+      </div>
     </section>
+    </MotionConfig>
   );
 }
