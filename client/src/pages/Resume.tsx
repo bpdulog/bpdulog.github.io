@@ -13,7 +13,11 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { lazy, Suspense } from "react";
 import CareerCommandCenter from "@/components/CareerCommandCenter";
+import TiltCard from "@/components/TiltCard";
+
+const RiskSurface = lazy(() => import("@/components/RiskSurface"));
 
 const capabilities = [
   {
@@ -54,6 +58,11 @@ export default function Resume() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#07111f] text-slate-100 selection:bg-cyan-300/30 selection:text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_8%,rgba(110,231,255,0.18),transparent_24%),radial-gradient(circle_at_90%_20%,rgba(251,191,36,0.10),transparent_22%),linear-gradient(180deg,#08111d_0%,#091523_52%,#07111f_100%)]" />
+      <div className="print:hidden">
+        <Suspense fallback={null}>
+          <RiskSurface />
+        </Suspense>
+      </div>
       <div className="noise-overlay pointer-events-none absolute inset-0 opacity-40" />
       <div className="grid-haze pointer-events-none absolute inset-0" />
       <div className="orbital orbital-one" />
@@ -185,8 +194,8 @@ export default function Resume() {
             {capabilities.map((capability, index) => {
               const Icon = capability.icon;
               return (
+                <TiltCard key={capability.title}>
                 <motion.article
-                  key={capability.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -201,6 +210,7 @@ export default function Resume() {
                     {capability.detail}
                   </p>
                 </motion.article>
+                </TiltCard>
               );
             })}
           </div>
